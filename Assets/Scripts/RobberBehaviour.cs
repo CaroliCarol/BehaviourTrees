@@ -18,7 +18,9 @@ public class RobberBehaviour : MonoBehaviour
 
         steal.AddChild(goToDiamond);
         steal.AddChild(goToVan);
-        steal.AddChild(steal);
+        tree.AddChild(steal);
+
+        tree.PrintTree();
     }
 
     // Update is called once per frame
