@@ -1,0 +1,33 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class Selector : Node
+{
+    public Selector(string n)
+    {
+        name = n;
+    }
+
+    public override Status Process()
+    {
+        Status childstatus = children[currentChild].Process();
+        if (childstatus == Status.RUNNING)
+        {
+            return Status.RUNNING;
+        }
+        if (childstatus == Status.SUCESS)
+        {
+            currentChild = 0;
+            return Status.SUCESS;
+        }
+
+        currentChild++;
+        if (currentChild >= children.Count)
+        {
+            currentChild = 0;
+            return Status.FAILURE;
+        }
+        return Status.RUNNING;
+    }
+}
